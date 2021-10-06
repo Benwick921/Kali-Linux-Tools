@@ -131,7 +131,7 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	fi
 
 	echo "${GREEN}Removing old config file $NC"
-	rm /home/jafor/.config/i3/config
+	rm /home/jafor/.config/i3/*
 
 	echo "${GREEN}Renaming config file $NC"
 	mv /home/jafor/.config/i3/* config
