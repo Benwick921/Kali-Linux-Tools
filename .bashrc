@@ -20,9 +20,11 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # get ip address
-IP=$(ip a | grep 10 | awk '{print $2}' | cut -d'/' -f1)
-if [[ $IP != ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+IP=$(ip a | grep -F '10.' | awk '{print $2}' | cut -d'/' -f1)
+if [[ $IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
 then
+	:
+else
 	IP=$(ip a | grep 192 | awk '{print $2}' | cut -d'/' -f1)
 fi
 
