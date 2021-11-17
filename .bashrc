@@ -19,6 +19,13 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# get ip address
+IP=$(ip a | grep 10 | awk '{print $2}' | cut -d'/' -f1)
+if [[ $IP != ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+then
+	IP=$(ip a | grep 192 | awk '{print $2}' | cut -d'/' -f1)
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -77,7 +84,7 @@ if [ "$color_prompt" = yes ]; then
     fi
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] ';;
+            PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-['$info_color''$IP''$prompt_color']-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] ';;
         oneline)
             PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'$info_color'\u@\h\[\033[00m\]:'$prompt_color'\[\033[01m\]\w\[\033[00m\]\$ ';;
         backtrack)
