@@ -19,14 +19,16 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# get ip address
-IP=$(ip a | grep -F '10.' | awk '{print $2}' | cut -d'/' -f1)
-if [[ $IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
-then
-	:
+# get interface
+INT=$(ip link show | awk '{print $2}' | sed -n 'p;n' | sed 's/.$//' | tail -n+2)
+
+if [[ "$INT" =~ .*"tap0".*   ]]; then
+	INT="tap0"
 else
-	IP=$(ip a | grep 192 | awk '{print $2}' | cut -d'/' -f1)
+	INT=$(echo $INT | awk '{print $1}')
 fi
+echo $INT
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -86,16 +88,17 @@ if [ "$color_prompt" = yes ]; then
     fi
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-['$info_color''$IP''$prompt_color']-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] ';;
+            PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-['$info_color'$(ip a show $INT | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1)'$prompt_color']-[\D{%H:%M:%S %d/%m/%Y}]-[\[\033[0;1m\]\w'$prompt_color'] \n'$prompt_color'└─'$info_color'\$\[\033[0m\] ';;
         oneline)
-            PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'$info_color'\u@\h\[\033[00m\]:'$prompt_color'\[\033[01m\]\w\[\033[00m\]\$ ';;
+            PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'$info_color'\u@\h\[\033[00m\]:'$prompt_color'\[\033[01m\]\w\[\033[00m\]\ $(date) $ ';;
         backtrack)
-            PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ';;
+            PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\ $(date) $ ';;
     esac
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\ $(date) $ '
 fi
 unset color_prompt force_color_prompt
+
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
