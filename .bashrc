@@ -87,7 +87,7 @@ if [ "$color_prompt" = yes ]; then
     fi
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-['$info_color' $(ip a show $INT | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1)'$prompt_color']-[\D{%H:%M:%S %d/%m/%Y}]-[\[\033[0;1m\]\w'$prompt_color'] \n'$prompt_color'└─'$info_color'\$\[\033[0m\] $(. ~/.bashrc)';;
+            PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-['$info_color'$(ip a show $INT | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -n1)'$prompt_color']-[\D{%H:%M:%S %d/%m/%Y}]-[\[\033[0;1m\]\w'$prompt_color'] \n'$prompt_color'└─'$info_color'\$\[\033[0m\] ' ;;
         oneline)
             PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'$info_color'\u@\h\[\033[00m\]:'$prompt_color'\[\033[01m\]\w\[\033[00m\]\ $(date) $ ';;
         backtrack)
@@ -159,3 +159,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export HISTTIMEFORMAT='%d/%m/%y %T '
