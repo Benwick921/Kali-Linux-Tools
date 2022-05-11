@@ -24,9 +24,12 @@ INT=$(ip link show | awk '{print $2}' | sed -n 'p;n' | sed 's/.$//' | tail -n+2)
 
 if [[ "$INT" =~ .*"tap0".*   ]]; then
 	INT="tap0"
+elif [[ "$INT" =~ .*"tun0".* ]]; then
+	INT="tun0"
 else
 	INT=$(echo $INT | awk '{print $1}')
 fi
+#echo "$INT"
 
 
 # check the window size after each command and, if necessary,
@@ -161,3 +164,4 @@ if ! shopt -oq posix; then
 fi
 
 export HISTTIMEFORMAT='%d/%m/%y %T '
+
