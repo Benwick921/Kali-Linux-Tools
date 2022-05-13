@@ -17,4 +17,11 @@ fi
 
 apt install snap
 snap install core
+
+echo -e "$YELLOW Include /snap/bin in /etc/evironment $NC"
+
 snap install discord
+snap install whatsdesk
+snap install telegram-desktop
+
+
