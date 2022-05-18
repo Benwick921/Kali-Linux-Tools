@@ -32,9 +32,14 @@ echo -e "$YELLOW Installing snap $NC"
 read var
 apt install snap
 
+echo -e "$YELLOW\Installing snapd $NC"
+read var
+apt install snapd
+
 echo -e "$YELLOW Installing snap core $NC"
 read var
 snap install core
+
 
 echo -e "$YELLOW Include /snap/bin in /etc/evironment $NC"
 
