@@ -9,13 +9,13 @@ interactive=0
 all=0
 username=""
 
+
 # Check for root-------------------------------------------------------------
 if [ "$EUID" -ne 0 ]
   then echo -e "$RED\0Please run as root $NC"
   exit
 fi
 echo -e "$YELLOW Adding Kali-Linux repo $NC"
-echo -e "$RED It doesent check if it already exist! $NC"
 read var
 if grep --quiet https://http.kali.org/kali /etc/apt/sources.list;
 then
@@ -41,7 +41,16 @@ read var
 snap install core
 
 
-echo -e "$YELLOW\0Include /snap/bin in /etc/evironment $NC"
+echo -e "$YELLOW\0Includeing /snap/bin path in ~/.profile $NC"
+if grep --quiet /snap/bin ~/.profile ; then
+	echo -e "$GREEN\0Path already present."
+else
+	echo " " >> ~/.profile
+	echo "# set PATH so it includes nap bin if it exists" >> ~/.profile
+	echo "if [ -d \"/snap/bin\" ] ; then" >> ~/.profile
+	echo -e "\t PATH=\"\$HOME/snap/bin\:\$PATH\"" >> ~/.profile
+	echo "fi" >> ~/.profile
+fi 
 
 echo -e "$YELLOW\0Installing discord $NC"
 read var
@@ -52,5 +61,7 @@ snap install whatsdesk
 echo -e "$YELLOW\0Installing Telegram $NC"
 read var
 snap install telegram-desktop
+
+
 
 
