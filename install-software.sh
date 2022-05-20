@@ -37,25 +37,29 @@ echo -e "$YELLOW\0Installing snap core $NC"
 snap install core
 
 
-echo -e "$YELLOW\0Includeing /snap/bin path in ~/.profile $NC"
+echo -e "$YELLOW\0Including /snap/bin path in ~/.profile $NC"
 if grep --quiet /snap/bin ~/.profile ; then
 	echo -e "$GREEN\0Path already present. $NC"
 else
 	echo " " >> ~/.profile
-	echo "# set PATH so it includes nap bin if it exists" >> ~/.profile
-	echo "if [ -d \"/snap/bin\" ] ; then" >> ~/.profile
-	echo -e "\t PATH=\"/snap/bin\"" >> ~/.profile
+	echo "# set PATH so it includes snap bin if it exists" >> ~/.profile
+	echo 'if [ -d "/snap/bin" ] ; then' >> ~/.profile
+	echo '\t PATH="/snap/bin:$PATH"' >> ~/.profile
 	echo "fi" >> ~/.profile
 fi 
 
 echo -e "$YELLOW\0Installing discord $NC"
 snap install discord
+
 echo -e "$YELLOW\0Installing whatsdesk (WhatsApp) $NC"
 read var
 snap install whatsdesk
 echo -e "$YELLOW\0Installing Telegram $NC"
 read var
 snap install telegram-desktop
+exit
+echo -e "$RED\0REBOOTING THE SYSTEM!"
+reboot
 
 
 
