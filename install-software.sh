@@ -44,6 +44,7 @@ snap install core --classic
 
 # Add snap to $PATH------------------------------------------------------------
 echo -e "$YELLOW\0Including /snap/bin path in ~/.profile $NC"
+PATH="/snap/bin:$PATH"
 if grep --quiet /snap/bin /home/$username/.profile ; then
 	echo -e "$GREEN\0Path already present. $NC"
 else
