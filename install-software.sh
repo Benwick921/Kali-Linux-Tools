@@ -24,7 +24,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Add Kali repo---------------------------------------------------------------
-echo -e "$YELLOW Adding Kali-Linux repo $NC"
+echo -e "$YELLOW\0Adding Kali-Linux repo $NC"
 if grep --quiet https://http.kali.org/kali /etc/apt/sources.list;
 then
     echo -e "$LGREEN\0Repo already exit, not adding. $NC"
@@ -39,9 +39,6 @@ apt install snap -y
 echo -e "$YELLOW\0Installing snapd $NC"
 apt install snapd -y
 
-echo -e "$YELLOW\0Installing snap core $NC"
-snap install core --classic
-
 # Add snap to $PATH------------------------------------------------------------
 echo -e "$YELLOW\0Including /snap/bin path in ~/.profile $NC"
 PATH="/snap/bin:$PATH"
@@ -54,6 +51,9 @@ else
 	echo -e '\t PATH="/snap/bin:$PATH"' >> /home/$username/.profile
 	echo "fi" >> /home/$username/.profile
 fi 
+
+echo -e "$YELLOW\0Installing snap core $NC"
+snap install core --classic
 
 echo -e "$YELLOW\0Installing discord $NC"
 snap install discord --classic
@@ -68,6 +68,7 @@ echo -e "$YELLOW\0Installing git $NC"
 apt install git -y
 
 echo -e "$RED\0REBOOTING SYSTEM!"
+sleep 3
 sudo reboot
 
 
