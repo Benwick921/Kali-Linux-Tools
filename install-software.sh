@@ -34,7 +34,7 @@ apt install snap -y
 
 echo -e "$YELLOW lInstalling snapd $NC"
 read var
-apt install snapd
+apt install snapd -y
 
 echo -e "$YELLOW Installing snap core $NC"
 read var
