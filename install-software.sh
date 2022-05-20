@@ -53,16 +53,16 @@ else
 fi 
 
 echo -e "$YELLOW\0Installing snap core $NC"
-snap install core --classic
+snap install core
 
 echo -e "$YELLOW\0Installing discord $NC"
-snap install discord --classic
+snap install discord
 
 echo -e "$YELLOW\0Installing whatsdesk (WhatsApp) $NC"
-snap install whatsdesk --classic
+snap install whatsdesk
 
 echo -e "$YELLOW\0Installing Telegram $NC"
-snap install telegram-desktop --classic
+snap install telegram-desktop
 
 echo -e "$YELLOW\0Installing git $NC"
 apt install git -y
