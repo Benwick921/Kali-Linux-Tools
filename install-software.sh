@@ -32,6 +32,17 @@ else
     echo "deb https://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
 fi
 
+# to remove duplicate
+echo -e "$YELLOW\0Installing git $NC"
+apt install git -y
+
+# Installing i3-gaps------------------------------------------------------------
+apt install i3-gaps
+
+exit
+
+
+
 # Install snap package manager------------------------------------------------
 echo -e "$YELLOW\0Installing snap $NC"
 apt install snap -y
@@ -66,6 +77,8 @@ snap install telegram-desktop
 
 echo -e "$YELLOW\0Installing git $NC"
 apt install git -y
+
+
 
 echo -e "$RED\0REBOOTING SYSTEM!"
 sleep 3
