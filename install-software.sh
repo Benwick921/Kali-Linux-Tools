@@ -62,8 +62,8 @@ echo -e "$YELLOW\0Installing Telegram $NC"
 read var
 snap install telegram-desktop
 
-echo -e "$RED\0REBOOTING THE SYSTEM!"
-reboot
+echo -e "$RED\0REBOOTING SYSTEM!"
+sudo reboot
 
 
 
