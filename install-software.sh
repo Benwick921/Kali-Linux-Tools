@@ -26,13 +26,13 @@ fi
 
 echo -e "$YELLOW Installing git $NC"
 read var
-apt install git
+apt install git -y
 
 echo -e "$YELLOW Installing snap $NC"
 read var
-apt install snap
+apt install snap -y
 
-echo -e "$YELLOW\Installing snapd $NC"
+echo -e "$YELLOW lInstalling snapd $NC"
 read var
 apt install snapd
 
