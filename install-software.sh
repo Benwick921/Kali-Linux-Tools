@@ -48,7 +48,7 @@ else
 	echo " " >> ~/.profile
 	echo "# set PATH so it includes nap bin if it exists" >> ~/.profile
 	echo "if [ -d \"/snap/bin\" ] ; then" >> ~/.profile
-	echo -e "\t PATH=\"\$HOME/snap/bin\:\$PATH\"" >> ~/.profile
+	echo -e "\t PATH=\"\$HOME/snap/bin:\$PATH\"" >> ~/.profile
 	echo "fi" >> ~/.profile
 fi 
 
