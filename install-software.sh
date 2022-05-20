@@ -9,18 +9,22 @@ interactive=0
 all=0
 username="$1"
 
-echo "/home/$username"
 
-
-
+# Check username-------------------------------------------------------------
+if [ "$username" == "" ] ; then
+	echo "Usage"
+	echo -e "\t./install-software.sh [username]"
+	exit
+fi
 
 # Check for root-------------------------------------------------------------
 if [ "$EUID" -ne 0 ]
   then echo -e "$RED\0Please run as root $NC"
   exit
 fi
-echo -e "$YELLOW Adding Kali-Linux repo $NC"
 
+# Add Kali repo---------------------------------------------------------------
+echo -e "$YELLOW Adding Kali-Linux repo $NC"
 if grep --quiet https://http.kali.org/kali /etc/apt/sources.list;
 then
     echo -e "$LGREEN\0Repo already exit, not adding. $NC"
@@ -28,9 +32,7 @@ else
     echo "deb https://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
 fi
 
-echo -e "$YELLOW\0Installing git $NC"
-apt install git -y
-
+# Install snap package manager------------------------------------------------
 echo -e "$YELLOW\0Installing snap $NC"
 apt install snap -y
 
@@ -38,9 +40,9 @@ echo -e "$YELLOW\0Installing snapd $NC"
 apt install snapd -y
 
 echo -e "$YELLOW\0Installing snap core $NC"
-snap install core
+snap install core --classic
 
-
+# Add snap to $PATH------------------------------------------------------------
 echo -e "$YELLOW\0Including /snap/bin path in ~/.profile $NC"
 if grep --quiet /snap/bin /home/$username/.profile ; then
 	echo -e "$GREEN\0Path already present. $NC"
@@ -53,14 +55,16 @@ else
 fi 
 
 echo -e "$YELLOW\0Installing discord $NC"
-snap install discord
+snap install discord --classic
 
 echo -e "$YELLOW\0Installing whatsdesk (WhatsApp) $NC"
-read var
-snap install whatsdesk
+snap install whatsdesk --classic
+
 echo -e "$YELLOW\0Installing Telegram $NC"
-read var
-snap install telegram-desktop
+snap install telegram-desktop --classic
+
+echo -e "$YELLOW\0Installing git $NC"
+apt install git -y
 
 echo -e "$RED\0REBOOTING SYSTEM!"
 sudo reboot
