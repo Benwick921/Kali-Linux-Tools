@@ -43,7 +43,7 @@ snap install core
 
 echo -e "$YELLOW\0Includeing /snap/bin path in ~/.profile $NC"
 if grep --quiet /snap/bin ~/.profile ; then
-	echo -e "$GREEN\0Path already present."
+	echo -e "$GREEN\0Path already present. $NC"
 else
 	echo " " >> ~/.profile
 	echo "# set PATH so it includes nap bin if it exists" >> ~/.profile
