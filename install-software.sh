@@ -16,7 +16,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 echo -e "$YELLOW Adding Kali-Linux repo $NC"
-read var
+
 if grep --quiet https://http.kali.org/kali /etc/apt/sources.list;
 then
     echo -e "$LGREEN\0Repo already exit, not adding. $NC"
@@ -25,19 +25,15 @@ else
 fi
 
 echo -e "$YELLOW\0Installing git $NC"
-read var
 apt install git -y
 
 echo -e "$YELLOW\0Installing snap $NC"
-read var
 apt install snap -y
 
 echo -e "$YELLOW\0Installing snapd $NC"
-read var
 apt install snapd -y
 
 echo -e "$YELLOW\0Installing snap core $NC"
-read var
 snap install core
 
 
@@ -53,7 +49,6 @@ else
 fi 
 
 echo -e "$YELLOW\0Installing discord $NC"
-read var
 snap install discord
 echo -e "$YELLOW\0Installing whatsdesk (WhatsApp) $NC"
 read var
