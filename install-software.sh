@@ -33,6 +33,7 @@ else
 fi
 echo -e "$YELLOW\0Updating Kali public key ED444FF07D8D0BF6 $RED\0(not sure if the key is fixed)$NC"
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F6BC817356A3D45E
+apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys F6BC817356A3D45E
 echo -e "$YELLOW\0Updating repository	"
 apt update
 
