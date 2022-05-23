@@ -44,6 +44,9 @@ apt install git -y
 apt install i3-gaps
 
 # Getconfig files---------------------------------------------------------------
+if [ ! -d "/home/$username/.cofig/i3" ] ; then
+	mkdir /home/$username/.config/i3
+fi
 wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -O /home/$username/.config/i3/config
 
 exit
