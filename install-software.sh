@@ -70,8 +70,6 @@ apt install tuxguitar
 
 echo -e "$YELOW\0Installing joplin"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
-exit
-
 
 # Install snap package manager------------------------------------------------
 echo -e "$YELLOW\0Installing snap $NC"
