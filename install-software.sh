@@ -35,7 +35,7 @@ echo -e "$YELLOW\0Updating Kali public key ED444FF07D8D0BF6 $RED\0(not sure if t
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ED444FF07D8D0BF6
 echo -e "$YELLOW\0Updating repository	"
 apt update
-exit
+
 # to remove duplicate
 echo -e "$YELLOW\0Installing git $NC"
 apt install git -y
