@@ -45,7 +45,9 @@ echo -e "$YELLOW\0Installing tuxguitar$NC"
 apt install tuxguitar -y	
 
 echo -e "$YELOW\0Installing joplin$NC"
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+wget -O joplin.sh https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh
+chmod +x joplin.sh
+./joplin.sh --allow-root
 
 # Add Kali repo---------------------------------------------------------------
 echo -e "$YELLOW\0Adding Kali-Linux repo $NC"
