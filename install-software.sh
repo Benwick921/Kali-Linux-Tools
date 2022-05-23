@@ -31,6 +31,8 @@ then
 else
     echo "deb https://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
 fi
+echo -e "$YELLOW\0Updating repository	"
+apt update
 
 # to remove duplicate
 echo -e "$YELLOW\0Installing git $NC"
@@ -38,6 +40,10 @@ apt install git -y
 
 # Installing i3-gaps------------------------------------------------------------
 apt install i3-gaps
+
+# Getconfig files---------------------------------------------------------------
+wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -P /home/$username/.config/i3/
+mv /home/$username/.config/i3/* config
 
 exit
 
