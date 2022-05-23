@@ -23,6 +23,10 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
+dpkg -i /tmp/google-chrome-stable_current_amd64.deb
+exit
+
 # Add Kali repo---------------------------------------------------------------
 echo -e "$YELLOW\0Adding Kali-Linux repo $NC"
 if grep --quiet https://http.kali.org/kali /etc/apt/sources.list;
@@ -49,7 +53,19 @@ if [ ! -d "/home/$username/.cofig/i3" ] ; then
 fi
 wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -O /home/$username/.config/i3/config
 
-exit
+
+
+echo -e "$YELLOW\0Installing gnome-terminal"
+apt install gnome-terminal
+
+echo -e "$YELLOW\0Installing htop"
+apt install htop
+
+echo -e "$YELLOW\0Installing vim"
+apt install vim
+
+echo -e "$YELLOW\0Installing google-chrome-stable"
+
 
 
 
