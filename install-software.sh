@@ -23,27 +23,26 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo -e "$YELLOW\0Install wget"
+echo -e "$YELLOW\0Install wget$NC"
 apt install wget
 
-echo -e "$YELLOW\0Installing gnome-terminal"
+echo -e "$YELLOW\0Installing gnome-terminal$NC"
 apt install gnome-terminal
 
-echo -e "$YELLOW\0Installing htop"
+echo -e "$YELLOW\0Installing htop$NC"
 apt install htop
 
-echo -e "$YELLOW\0Installing vim"
+echo -e "$YELLOW\0Installing vim$NC"
 apt install vim
 
-echo -e "$YELLOW\0Installing google-chrome-stable"
-
+echo -e "$YELLOW\0Installing google-chrome-stable$NC"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
 sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 
-echo -e "$YELLOW\0Installing tuxguitar"
+echo -e "$YELLOW\0Installing tuxguitar$NC"
 apt install tuxguitar
 
-echo -e "$YELOW\0Installing joplin"
+echo -e "$YELOW\0Installing joplin$NC"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # Add Kali repo---------------------------------------------------------------
@@ -56,7 +55,7 @@ else
     echo -e "$YELLOW\0Updating Kali public key ED444FF07D8D0BF6 $RED\0(not sure if the key is fixed)$NC"
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ED444FF07D8D0BF6
 fi
-echo -e "$YELLOW\0Updating repository	"
+echo -e "$YELLOW\0Updating repository$NC"
 apt update
 
 # to remove duplicate
