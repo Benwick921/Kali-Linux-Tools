@@ -23,7 +23,28 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+echo -e "$YELLOW\0Install wget"
+apt install wget
 
+echo -e "$YELLOW\0Installing gnome-terminal"
+apt install gnome-terminal
+
+echo -e "$YELLOW\0Installing htop"
+apt install htop
+
+echo -e "$YELLOW\0Installing vim"
+apt install vim
+
+echo -e "$YELLOW\0Installing google-chrome-stable"
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
+sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
+
+echo -e "$YELLOW\0Installing tuxguitar"
+apt install tuxguitar
+
+echo -e "$YELOW\0Installing joplin"
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # Add Kali repo---------------------------------------------------------------
 echo -e "$YELLOW\0Adding Kali-Linux repo $NC"
@@ -50,26 +71,6 @@ if [ ! -d "/home/$username/.cofig/i3" ] ; then
 	mkdir /home/$username/.config/i3
 fi
 wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -O /home/$username/.config/i3/config
-
-echo -e "$YELLOW\0Installing gnome-terminal"
-apt install gnome-terminal
-
-echo -e "$YELLOW\0Installing htop"
-apt install htop
-
-echo -e "$YELLOW\0Installing vim"
-apt install vim
-
-echo -e "$YELLOW\0Installing google-chrome-stable"
-
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
-sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
-
-echo -e "$YELLOW\0Installing tuxguitar"
-apt install tuxguitar
-
-echo -e "$YELOW\0Installing joplin"
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # Install snap package manager------------------------------------------------
 echo -e "$YELLOW\0Installing snap $NC"
