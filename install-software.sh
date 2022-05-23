@@ -24,23 +24,25 @@ if [ "$EUID" -ne 0 ]
 fi
 
 echo -e "$YELLOW\0Install wget$NC"
-apt install wget
+apt install wget -y
 
 echo -e "$YELLOW\0Installing gnome-terminal$NC"
-apt install gnome-terminal
+apt install gnome-terminal -y
 
 echo -e "$YELLOW\0Installing htop$NC"
-apt install htop
+apt install htop -y
 
 echo -e "$YELLOW\0Installing vim$NC"
-apt install vim
+apt install vim -y
 
 echo -e "$YELLOW\0Installing google-chrome-stable$NC"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
 sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 
+apt --fix-broken install -y
+
 echo -e "$YELLOW\0Installing tuxguitar$NC"
-apt install tuxguitar
+apt install tuxguitar -y	
 
 echo -e "$YELOW\0Installing joplin$NC"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
