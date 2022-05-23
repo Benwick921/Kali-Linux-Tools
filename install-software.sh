@@ -30,9 +30,9 @@ then
     echo -e "$LGREEN\0Repo already exit, not adding. $NC"
 else
     echo "deb https://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
-fi
-echo -e "$YELLOW\0Updating Kali public key ED444FF07D8D0BF6 $RED\0(not sure if the key is fixed)$NC"
+    echo -e "$YELLOW\0Updating Kali public key ED444FF07D8D0BF6 $RED\0(not sure if the key is fixed)$NC"
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ED444FF07D8D0BF6
+fi
 echo -e "$YELLOW\0Updating repository	"
 apt update
 
@@ -45,7 +45,6 @@ apt install i3-gaps
 
 # Getconfig files---------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -O /home/$username/.config/i3/config
-mv /home/$username/.config/i3/* config
 
 exit
 
