@@ -17,7 +17,7 @@ sudo ./install-my-software.sh -a benwick
 
 # .bashrc
 
-*If you dont want to use bash you must mess with your shell's config file. Every shell has it ouw config file and its oun syntax, modufying it yuo can get the same reslt.*
+*If you dont want to use bash you must mess with your shell's config file. Every shell has it own config file and its own syntax, modufying it yuo can get the same reslt.*
 
 In order to make `.bashrc` execute correctly remove `.bash_profile` or `.bash_login` files. Check if the curret shell is **bash** because other shells might not use `.profile` config file. You can check your shell with the following commands:
 
