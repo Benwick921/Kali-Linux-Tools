@@ -110,8 +110,8 @@ if [ $interactive == 1 ]; then
 	read confirm
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	echo -e "${GREEN} Adding repository ppa:regolith-linux/release $NC"
-	sudo add-apt-repository ppa:regolith-linux/release
+	#echo -e "${GREEN} Adding repository ppa:regolith-linux/release $NC"
+	#sudo add-apt-repository ppa:regolith-linux/release
 
 	echo -e "${GREEN}Installing i3-gaps $NC"
 	sudo apt install i3-wm
