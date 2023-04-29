@@ -114,7 +114,7 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	sudo add-apt-repository ppa:regolith-linux/release
 
 	echo -e "${GREEN}Installing i3-gaps $NC"
-	sudo apt install i3-gaps
+	sudo apt install i3-wm
 
 	echo -e "${GREEN}Creating config folder .config/i3 $NC"
 	mkdir -p /home/jafor/.config/i3
@@ -149,3 +149,4 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 
 	echo -e "${GREEN}Downloading a better bashrc $NC"
 	wget
+fi
