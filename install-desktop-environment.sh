@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#test
-
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 LGREEN='\033[1;32m'
@@ -9,7 +7,7 @@ NC='\033[0m'
 
 interactive=0
 all=0
-username=""
+username="$2"
 
 if [[ "$1" == "-h" || "$1" == "" ]]; then
 	echo "DESCRIPTION" 
@@ -25,6 +23,9 @@ if [[ "$1" == "-h" || "$1" == "" ]]; then
 	echo -e "\ti3-gaps\t\tTiled window manager"
 	exit
 fi
+
+# disabling system bip------------------------------------------------------
+xset b off
 
 # Check for root-------------------------------------------------------------
 if [ "$EUID" -ne 0 ]
@@ -42,7 +43,6 @@ else
 fi
 # Check username------------------------------------------------------------
 echo "$2"
-
 
 
 # Updates--------------------------------------------------------------------
@@ -117,26 +117,47 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	sudo apt install i3-wm
 
 	echo -e "${GREEN}Creating config folder .config/i3 $NC"
-	mkdir -p /home/jafor/.config/i3
+	mkdir -p /home/${username}/.config/i3
 
 	echo -e "${GREEN}Coping i3 config file from github (github.com/benwick921/i3gapstutorial)"
-	echo -en "${YELLOW}Kali config(default) or Manjaro config? (k/m) $NC"
-	read config
-	if [ $config == "m" ];then
-		echo -e "${GREEN}Downloading Manjaro configuration $NC"
-		wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-manjaro -P /home/jafor/.config/i3/
 
-	else
-		echo -e "${GREEN}Downloading Kali Linux configuration $NC"
-		wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -P /home/jafor/.config/i3/
+	echo -e "${GREEN}Downloading Kali Linux configuration $NC"
+	wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -P /home/${username}/.config/i3/
 	fi
 
-	echo "${GREEN}Removing old config file $NC"
-	rm /home/jafor/.config/i3/*
+	#echo "${GREEN}Removing old config file $NC"
+	#rm /home/${username}/.config/i3/*
 
 	echo "${GREEN}Renaming config file $NC"
-	mv /home/jafor/.config/i3/* config
+	mv /home/${username}/.config/i3/* config
 fi
+
+# feh(background dependecy)-------------------------------------------
+echo -e "${GREEN}Installing feh for background
+apt install feh
+
+# compton(dependency)---------------------------------------------------
+echo -e "${GREEN}Installing compton for terminal trasparency
+apt install compton
+
+# dmenu(dependecy)-----------------------------------------------------
+echo -e "${GREEN}Installing dmenu for the menu
+apt install dmenu
+
+# polybar(dependency)--------------------------------------------------
+echo -e "${GREEN}Installing polybar
+apt install polybar
+
+echo -e "${GREEN}Creating polybar configuration folder
+mkdir /home/${username}/.config/polybar
+
+echo -e "${GREEN}Copying polybar configuration files
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/config.ini -P /home/${username}/.config/polybar
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/launch.sh -P /home/${username}/.config/polybar
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/network.sh -P /home/${username}/.config/polybar
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/targetip.sh -P /home/${username}/.config/polybar
+echo "0.0.0.0" > /home/${username}/.config/polybar/target
+
 
 # Set .bashrc-----------------------------------------------------------
 if [ $interactive == 1 ]; then
@@ -145,8 +166,10 @@ if [ $interactive == 1 ]; then
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
 	echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
-	mv /home/jafor/.bashrc /home/jafor/.bashrc_old
+	mv /home/${username}/.bashrc /home/${username}/.bashrc_old
 
 	echo -e "${GREEN}Downloading a better bashrc $NC"
 	wget
 fi
+
+# download-background-image----------------------------------------------------------------
