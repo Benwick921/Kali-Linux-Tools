@@ -24,6 +24,14 @@ if [[ "$1" == "-h" || "$1" == "" ]]; then
 	exit
 fi
 
+# check-if-user-exist------------------------------------------------------
+testuser=$(grep -c "^$username:" /etc/passwd)
+if [ ${testuser} -eq 0 ]
+	then echo -e "${RED}User ${username} does not exist $NC"
+	exit
+	else echo -e "${LGREEN}User ${username} does exist $NC"
+fi
+
 # disabling system bip------------------------------------------------------
 xset b off
 
@@ -41,9 +49,6 @@ else
 		interactive=1
 	fi
 fi
-# Check username------------------------------------------------------------
-echo "$2"
-
 
 # Updates--------------------------------------------------------------------
 if [ $interactive == 1 ]; then
@@ -110,53 +115,55 @@ if [ $interactive == 1 ]; then
 	read confirm
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	#echo -e "${GREEN} Adding repository ppa:regolith-linux/release $NC"
+	#echo -e "${LGREEN}Adding repository ppa:regolith-linux/release $NC"
 	#sudo add-apt-repository ppa:regolith-linux/release
 
-	echo -e "${GREEN}Installing i3-gaps $NC"
-	sudo apt install i3-wm
+	echo -e "${LGREEN}Installing i3-gaps $NC"
+	#sudo apt install i3-wm
 
-	echo -e "${GREEN}Creating config folder .config/i3 $NC"
+	echo -e "${LGREEN}Creating config folder .config/i3 $NC"
 	mkdir -p /home/${username}/.config/i3
 
-	echo -e "${GREEN}Coping i3 config file from github (github.com/benwick921/i3gapstutorial)"
+	echo -e "${LGREEN}Coping i3 config file from github (github.com/benwick921/i3gapstutorial) $NC"
 
-	echo -e "${GREEN}Downloading Kali Linux configuration $NC"
+	echo -e "${LGREEN}Downloading Kali Linux configuration $NC"
 	wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -P /home/${username}/.config/i3/
-	fi
 
-	#echo "${GREEN}Removing old config file $NC"
+	#echo "${LGREEN}Removing old config file $NC"
 	#rm /home/${username}/.config/i3/*
 
-	echo "${GREEN}Renaming config file $NC"
-	mv /home/${username}/.config/i3/* config
+	echo -e "${LGREEN}Renaming config file $NC"
+	mv /home/${username}/.config/i3/* /home/${username}/.config/i3/config
 fi
 
 # feh(background dependecy)-------------------------------------------
-echo -e "${GREEN}Installing feh for background
+echo -e "${LGREEN}Installing feh for background $NC"
 apt install feh
 
 # compton(dependency)---------------------------------------------------
-echo -e "${GREEN}Installing compton for terminal trasparency
+echo -e "${LGREEN}Installing compton for terminal trasparency $NC"
 apt install compton
 
 # dmenu(dependecy)-----------------------------------------------------
-echo -e "${GREEN}Installing dmenu for the menu
+echo -e "${LGREEN}Installing dmenu for the menu $NC"
 apt install dmenu
 
 # polybar(dependency)--------------------------------------------------
-echo -e "${GREEN}Installing polybar
+echo -e "${LGREEN}Installing polybar $NC"
 apt install polybar
 
-echo -e "${GREEN}Creating polybar configuration folder
+echo -e "${LGREEN}Creating polybar configuration folder $NC"
 mkdir /home/${username}/.config/polybar
 
-echo -e "${GREEN}Copying polybar configuration files
+echo -e "${GREEN}Copying polybar configuration files $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/config.ini -P /home/${username}/.config/polybar
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/launch.sh -P /home/${username}/.config/polybar
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/network.sh -P /home/${username}/.config/polybar
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/targetip.sh -P /home/${username}/.config/polybar
 echo "0.0.0.0" > /home/${username}/.config/polybar/target
+echo -e "${GREEN}Setting file permission to 777 $NC"
+chmod 777 /home/${username}/.config/polybar/*
+
 
 
 # Set .bashrc-----------------------------------------------------------
