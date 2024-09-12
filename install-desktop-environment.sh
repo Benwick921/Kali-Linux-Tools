@@ -15,15 +15,18 @@ if [[ "$1" == "-h" || "$1" == "" ]]; then
 	echo -e "\t-a\tInstall all without asking confirmation"
 	echo ""
 	echo "PROGRAMS"
-	echo -e "\tRemmina\t\tRemote desktop for Linux"
-	echo -e "\tPip3\t\tPython3 library installer"
-	echo -e "\tImpacket\tCollection of python scripts"
-	echo -e "\tBloodhound\tFor Active Directory"
-	echo -e "\tNeo4j\t\tNeed for BloodHound"
 	echo -e "\ti3-gaps\t\tTiled window manager"
+	echo -e "\tFeh\t\tDesktop backgound"
+	echo -e "\tCompton\t\tTerminal transparency"
+	echo -e "\tDmenu\t\tPrograms launcher menu"
+	echo -e "\tPolybar\t\tTaskbar"
 	exit
 fi
-
+# Check for root-------------------------------------------------------------
+if [ "$EUID" -ne 0 ]
+  then echo -e "$RED Please run as root $NC"
+  exit
+fi
 # check-if-user-exist------------------------------------------------------
 testuser=$(grep -c "^$username:" /etc/passwd)
 if [ ${testuser} -eq 0 ]
@@ -31,16 +34,6 @@ if [ ${testuser} -eq 0 ]
 	exit
 	else echo -e "${LGREEN}User ${username} does exist $NC"
 fi
-
-# disabling system bip------------------------------------------------------
-xset b off
-
-# Check for root-------------------------------------------------------------
-if [ "$EUID" -ne 0 ]
-  then echo -e "$RED Please run as root $NC"
-  exit
-fi
-
 # Check command line arguments-----------------------------------------------
 if [ "$1" == "-a" ]; then
 	all=1
@@ -58,56 +51,17 @@ fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
 	apt update
 fi
-
-# Install Remmina-----------------------------------------------------------
+# disabling system bip------------------------------------------------------
 if [ $interactive == 1 ]; then
-	echo -en "${YELLOW}Do you want to install Remmina? (y/n) $NC"
-	read confirm
-fi
-if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then 
-	apt install remmina
-fi
-
-# Install pip3-------------------------------------------------------------
-if [ $interactive == 1 ]; then
-	echo -en "${YELLOW}DO you want to install pip3? (y/n) $NC"
+	echo -en "${YELLOW}Do you wanto to disable system bip? (y/n) $NC"
 	read confirm
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	apt install python3-pip
+	xset b off
 fi
 
-# Install impacket--------------------------------------------------------
-if [ $interactive == 1 ]; then
-	echo -en "${YELLOW}Do you want to install impacket? (y/n) $NC"
-	read confirm
-fi
-if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	echo -e "${LGREEN}Cloning repo... $NC"
-	git clone https://github.com/SecureAuthCorp/impacket.git /opt/impacket
-	echo -e "${LGREEN}Installing requerements... $NC"
-	pip3 install -r /opt/impacket/requirements.txt
-	echo -e "${LGREEN}Installing impacket... $NC"
-	cd /opt/impacket/ && python3 ./setup.py install
-fi
 
-# Install bloodhound----------------------------------------------------
-if [ $interactive == 1 ]; then
-	echo -en "${YELLOW}Do you want to install bloodhound? (y/n) $NC"
-	read confirm
-fi
-if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	apt install bloodhound
-fi
 
-# Install neo4j--------------------------------------------------------
-if [ $interactive == 1 ]; then
-	echo -en "${YELLOW}Do you wanto to install neo4j? (y/n) $NC"
-	read confirm
-fi
-if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	apt install neo4j
-fi
 
 # i3-gaps-------------------------------------------------------------
 if [ $interactive == 1 ]; then
@@ -119,26 +73,31 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	#sudo add-apt-repository ppa:regolith-linux/release
 
 	echo -e "${LGREEN}Installing i3-gaps $NC"
-	#sudo apt install i3-wm
+	sudo apt install i3-wm
 
 	echo -e "${LGREEN}Creating config folder .config/i3 $NC"
 	mkdir -p /home/${username}/.config/i3
 
 	echo -e "${LGREEN}Coping i3 config file from github (github.com/benwick921/i3gapstutorial) $NC"
-
+	
+	echo -e "${LGREEN}Cleaning i3 config folder $NC"
+	rm /home/${username}/.config/i3/*
 	echo -e "${LGREEN}Downloading Kali Linux configuration $NC"
-	wget https://raw.githubusercontent.com/Benwick921/i3gapstutorial/master/i3/config-kali -P /home/${username}/.config/i3/
-
-	#echo "${LGREEN}Removing old config file $NC"
-	#rm /home/${username}/.config/i3/*
+	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/i3/config -P /home/${username}/.config/i3/
 
 	echo -e "${LGREEN}Renaming config file $NC"
 	mv /home/${username}/.config/i3/* /home/${username}/.config/i3/config
 fi
 
 # feh(background dependecy)-------------------------------------------
-echo -e "${LGREEN}Installing feh for background $NC"
-apt install feh
+if [ $interactive == 1 ]; then
+	echo -en "${YELLOW}Do you want to install feh to have a desktop background? (y/n) $NC"
+	read confirm
+fi
+if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
+	echo -e "${LGREEN}Installing feh for background $NC"
+	apt install feh
+fi
 
 # compton(dependency)---------------------------------------------------
 echo -e "${LGREEN}Installing compton for terminal trasparency $NC"
@@ -155,6 +114,9 @@ apt install polybar
 echo -e "${LGREEN}Creating polybar configuration folder $NC"
 mkdir /home/${username}/.config/polybar
 
+echo -e "${LGREEN}Cleaning polybar config folder $NC"
+rm /home/${username}/.config/polybar|/*
+
 echo -e "${GREEN}Copying polybar configuration files $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/config.ini -P /home/${username}/.config/polybar
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/launch.sh -P /home/${username}/.config/polybar
@@ -167,16 +129,16 @@ chmod 777 /home/${username}/.config/polybar/*
 
 
 # Set .bashrc-----------------------------------------------------------
-if [ $interactive == 1 ]; then
-	echo -en "${YELLOW}Do you want to change your .bashrc to look like Kali Linux? (y/n) $NC"
-	read confirm
-fi
-if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
+#if [ $interactive == 1 ]; then
+#	echo -en "${YELLOW}Do you want to change your .bashrc to make it look cool? (y/n) $NC"
+#	read confirm
+#fi
+#if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
 	echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
 	mv /home/${username}/.bashrc /home/${username}/.bashrc_old
 
-	echo -e "${GREEN}Downloading a better bashrc $NC"
-	wget
-fi
+	echo -e "${GREEN}Downloading a better .bashrc $NC"
+	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
+#fi
 
 # download-background-image----------------------------------------------------------------
