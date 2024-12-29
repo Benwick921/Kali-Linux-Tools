@@ -115,7 +115,7 @@ echo -e "${LGREEN}Creating polybar configuration folder $NC"
 mkdir /home/${username}/.config/polybar
 
 echo -e "${LGREEN}Cleaning polybar config folder $NC"
-rm /home/${username}/.config/polybar|/*
+rm /home/${username}/.config/polybar/*
 
 echo -e "${GREEN}Copying polybar configuration files $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/config.ini -P /home/${username}/.config/polybar
