@@ -99,13 +99,13 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	apt install feh
 fi
 
-# compton(dependency)---------------------------------------------------
+# compton(terminal transparency dependency)---------------------------------------------------
 echo -e "${LGREEN}Installing compton for terminal trasparency $NC"
 apt install compton
 echo -en "${LGREEN}Copying Compton config file $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/.config/compton.conf -P /home/${username}/.config/
 
-# dmenu(dependecy)-----------------------------------------------------
+# dmenu(alt+d start menu dependecy)-----------------------------------------------------
 echo -e "${LGREEN}Installing dmenu for the menu $NC"
 apt install dmenu
 
