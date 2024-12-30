@@ -10,6 +10,7 @@ all=0
 username="$2"
 
 if [[ "$1" == "-h" || "$1" == "" ]]; then
+	echo "./install-desktop-environment.sh [username] [option]"
 	echo "DESCRIPTION" 
 	echo -e "\t-i\tInteractive installation"
 	echo -e "\t-a\tInstall all without asking confirmation"
