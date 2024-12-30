@@ -10,7 +10,9 @@ all=0
 username="$2"
 
 if [[ "$1" == "-h" || "$1" == "" ]]; then
+	echo "RUN AS"
 	echo "./install-desktop-environment.sh [options] [username]"
+ 	echo ""
 	echo "DESCRIPTION" 
 	echo -e "\t-i\tInteractive installation"
 	echo -e "\t-a\tInstall all without asking confirmation"
@@ -132,6 +134,9 @@ chmod 777 /home/${username}/.config/polybar/*
 
 
 # Set .bashrc-----------------------------------------------------------
+
+# IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
+
 #if [ $interactive == 1 ]; then
 #	echo -en "${YELLOW}Do you want to change your .bashrc to make it look cool? (y/n) $NC"
 #	read confirm
