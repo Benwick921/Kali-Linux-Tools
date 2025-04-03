@@ -153,5 +153,5 @@ chmod 777 /home/${username}/.config/polybar/*
 
 # download-target-script-------------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/usr/bin/target -P /usr/bin/
-
+chmod 777 /us/bin/target
 echo -e "${YELLOW}Check .config/i3/config if the paths contains your username at the end of the file"
