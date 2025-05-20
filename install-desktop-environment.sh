@@ -52,7 +52,7 @@ if [ $interactive == 1 ]; then
 	read confirm
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	apt update
+	apt update -y
 fi
 # disabling system bip------------------------------------------------------
 if [ $interactive == 1 ]; then
@@ -76,7 +76,7 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	#sudo add-apt-repository ppa:regolith-linux/release
 
 	echo -e "${LGREEN}Installing i3-gaps $NC"
-	sudo apt install i3-wm
+	sudo apt install i3-wm -y
 
 	echo -e "${LGREEN}Creating config folder .config/i3 $NC"
 	mkdir -p /home/${username}/.config/i3
@@ -99,22 +99,22 @@ if [ $interactive == 1 ]; then
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
 	echo -e "${LGREEN}Installing feh for background $NC"
-	apt install feh
+	apt install feh -y
 fi
 
 # compton(terminal transparency dependency)---------------------------------------------------
 echo -e "${LGREEN}Installing compton for terminal trasparency $NC"
-apt install compton
+apt install compton -y
 echo -en "${LGREEN}Copying Compton config file $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/.config/compton.conf -P /home/${username}/.config/
 
 # dmenu(alt+d start menu dependecy)-----------------------------------------------------
 echo -e "${LGREEN}Installing dmenu for the menu $NC"
-apt install dmenu
+apt install dmenu -y
 
 # polybar(dependency)--------------------------------------------------
 echo -e "${LGREEN}Installing polybar $NC"
-apt install polybar
+apt install polybar -y
 
 echo -e "${LGREEN}Creating polybar configuration folder $NC"
 mkdir /home/${username}/.config/polybar
@@ -153,5 +153,5 @@ chmod 777 /home/${username}/.config/polybar/*
 
 # download-target-script-------------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/usr/bin/target -P /usr/bin/
-chmod 777 /us/bin/target
+sudo chmod 777 /us/bin/target
 echo -e "${YELLOW}Check .config/i3/config if the paths contains your username at the end of the file"
