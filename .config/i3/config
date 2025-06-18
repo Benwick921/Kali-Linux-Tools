@@ -182,16 +182,30 @@ bindsym $mod+r mode "resize"
 #}
 
 # My Configs
-exec_always --no-startup-id /home/kali/.config/polybar/launch.sh
+exec_always --no-startup-id /home/benwick/.config/polybar/launch.sh
 exec --no-startup-id compton
-exec_always feh --bg-scale /home/kali/Downloads/w.jpg
+exec_always feh --bg-scale /home/benwick/Downloads/w.jpg
 for_window [class="^.*"] border pixel 1
-gaps inner 14
-gaps outer -2
-gaps top -10
+gaps inner 12
+gaps outer -3
+gaps top -4
 exec --no-startup-id vmware-user
 
 # class                 border  backgr. text    indicator child_border
 #			Ignore	Ignore	Ignore	Next Spwn Border Color!
-client.focused          #00ff00 #285577 #ffffff #2ca0fd   #2ca0fd
-client.unfocused        #00ff00 #222222 #888888 #292d2e   #285d87
+client.focused          #ff0000 #ff0000 #ff0000 #267BF6   #267BF6
+client.unfocused        #00ff00 #00ff00 #00ff00 #285d87   #285d87
+client.focused_inactive #0000ff #0000ff #0000ff #285d87   #285d87
+
+
+
+
+
+
+
+
+
+
+
+
+
