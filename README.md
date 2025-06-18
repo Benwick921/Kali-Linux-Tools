@@ -50,8 +50,8 @@ Now upon opening a new window the file `.bashrc` will be executed, if not log-ou
 
 # TO DO
 
-1 - What manual update to do after the installation (also explained at the end of the script onsce it finish to install everything)
-2 - Addedd polybat specific Nerd Font installation to prevent rendering issues
-3 - Add standard polybar installation (just in case, can be usefull to enrich the shell)
-4 - Update polybar installation code to download file in `/tmp` or `/usr/tmp`
-5 - Eventually delete the downloaded files
+1. What manual update to do after the installation (also explained at the end of the script onsce it finish to install everything)
+2. Addedd polybat specific Nerd Font installation to prevent rendering issues
+3. Add standard polybar installation (just in case, can be usefull to enrich the shell)
+4. Update polybar installation code to download file in `/tmp` or `/usr/tmp`
+5. Eventually delete the downloaded files
