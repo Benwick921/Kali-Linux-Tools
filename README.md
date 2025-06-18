@@ -49,6 +49,7 @@ chsh -s /usr/bin/bash
 Now upon opening a new window the file `.bashrc` will be executed, if not log-out and log-in to you computer account or completely reboot it.
 
 # TO DO
+
 1 - What manual update to do after the installation (also explained at the end of the script onsce it finish to install everything)
 2 - Addedd polybat specific Nerd Font installation to prevent rendering issues
 3 - Add standard polybar installation (just in case, can be usefull to enrich the shell)
