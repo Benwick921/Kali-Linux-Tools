@@ -1,5 +1,5 @@
 # Kali-Linux-Tools
-![final result](https://github.com/Benwick921/Kali-Linux-Tools/blob/main/i3-desktop.png)
+![final result](https://github.com/Benwick921/Kali-Linux-Tools/blob/main/i3-desktop-1.png)
 ![final result](https://github.com/Benwick921/Kali-Linux-Tools/blob/main/i3-desktop-2.png)
 
 My personal set of Kali Linux tools installer
