@@ -31,7 +31,6 @@ else
 fi
 #echo "$INT"
 
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -165,3 +164,5 @@ fi
 
 export HISTTIMEFORMAT='%d/%m/%y %T '
 
+# Load shared variables system
+source /opt/isession/loader.sh
