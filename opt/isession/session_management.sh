@@ -29,7 +29,7 @@ user_assign() {
     # Verify strict assignment pattern
     if [[ "$BASH_COMMAND" =~ ^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*=[^[:space:]] ]]; then
         echo "export $BASH_COMMAND" >> "$SHARED_VARS_FILE"
-        echo "User assignment detected: $BASH_COMMAND"
+        #echo "User assignment detected: $BASH_COMMAND"
     fi
 }
 
