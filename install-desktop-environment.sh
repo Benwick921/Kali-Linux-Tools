@@ -132,26 +132,37 @@ echo -e "${GREEN}Setting file permission to 777 $NC"
 chmod 777 /home/${username}/.config/polybar/*
 
 
-
-# Set .bashrc-----------------------------------------------------------
-
-# IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
-
-#if [ $interactive == 1 ]; then
-#	echo -en "${YELLOW}Do you want to change your .bashrc to make it look cool? (y/n) $NC"
-#	read confirm
-#fi
-#if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
-	mv /home/${username}/.bashrc /home/${username}/.bashrc_old
-
-	echo -e "${GREEN}Downloading a better .bashrc $NC"
-	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
-#fi
-
-# download-background-image----------------------------------------------------------------
+# Donwload session management scripts and create folders----------------
+mkdir /opt/isession
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/opt/isession/loader.sh -P /opt/isession/
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/opt/isession/session_management.sh -P /opt/isession/
 
 # download-target-script-------------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/usr/bin/target -P /usr/bin/
 sudo chmod 777 /us/bin/target
 echo -e "${YELLOW}Check .config/i3/config if the paths contains your username at the end of the file"
+
+# download-background-image----------------------------------------------------------------
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/w.jpg
+
+# Update .bashrc-----------------------------------------------------------
+echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
+mv /home/${username}/.bashrc /home/${username}/.bashrc_old
+
+echo -e "${GREEN}Downloading a better .bashrc $NC"
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
+
+# IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
+echo -e "${YELLOW}Dropping the sudo privilege"
+sudo -u ${username} bash <<'EOF'
+echo -e "${YELLOW}Running as $(whoami)"
+# Change Shell to Bash ------------------------------------------------------------------
+
+# Install fonts --------------------------------------------------------------------
+echo -e "${YELLOW}Installing NerdFont for icons"
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip -P /tmp
+unzip /tmp/NerdFontsSymbolsOnly.zip -d ~/.local/share/fonts/
+fc-cache -fv
+EOF
+
+
