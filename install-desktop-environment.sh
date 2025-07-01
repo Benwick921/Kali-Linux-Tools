@@ -139,11 +139,11 @@ wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/ma
 
 # download-target-script-------------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/usr/bin/target -P /usr/bin/
-sudo chmod 777 /us/bin/target
+sudo chmod 777 /usr/bin/target
 echo -e "${YELLOW}Check .config/i3/config if the paths contains your username at the end of the file"
 
 # download-background-image----------------------------------------------------------------
-wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/w.jpg
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
 
 # Update .bashrc-----------------------------------------------------------
 echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
