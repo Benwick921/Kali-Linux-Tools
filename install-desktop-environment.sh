@@ -92,8 +92,8 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 	mv /home/${username}/.config/i3/* /home/${username}/.config/i3/config
 fi
 echo -e "${LGREEN}Injecting custom setting for current user"
-echo "exec_always --no-startup-id /home/benwick/.config/polybar/launch.sh" >> /home/${username}/.config/i3/config
-echo "exec_always feh --bg-scale /home/benwick/Downloads/w.jpg" >> /home/${username}/.config/i3/config
+echo "exec_always --no-startup-id /home/${username}/.config/polybar/launch.sh" >> /home/${username}/.config/i3/config
+echo "exec_always feh --bg-scale /home/${username}/Downloads/w.jpg" >> /home/${username}/.config/i3/config
 
 # feh(background dependecy)-------------------------------------------
 if [ $interactive == 1 ]; then
