@@ -8,8 +8,9 @@ NC='\033[0m'
 
 username="$1"
 
-echo -e "${RED}Deleting already existant files and folder $NC"
+echo -e "${RED}Deleting already existant session files and folder $NC"
 rm -r /opt/isession/
+rm -r /home/${username}/.config/isession/*
 
 # Donwload session management scripts and create folders----------------
 echo -e "${LGREEN}Creating session folder $NC"
