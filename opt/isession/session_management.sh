@@ -1,7 +1,8 @@
 #!/bin/bash
 # Shared Variables System Core
 
-SHARED_VARS_FILE="$HOME/vars"
+SHARED_VARS_FILE="$1"
+#echo $SHARED_VARS_FILE
 CMD_DEPTH=0
 
 update() {
