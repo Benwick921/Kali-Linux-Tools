@@ -10,14 +10,17 @@ username="$1"
 
 # Check for root-------------------------------------------------------------
 if [ "$EUID" -ne 0 ]
-  then echo -e "$RED Please run as root $NC"
+  then echo -e "${RED}Please run as root $NC"
+  echo "sudo ./iutility-tools.sh username"
   exit
 fi
 
 # check-if-user-exist------------------------------------------------------
 testuser=$(grep -c "^$username:" /etc/passwd)
 if [ ${testuser} -eq 0 ]
-	then echo -e "${RED}User ${username} does not exist $NC"
+	then 
+		echo -e "${RED}User ${username} does not exist $NC"
+		echo "sudo ./utility-tools.sh username"
 		exit
 	else echo -e "${LGREEN}User ${username} does exist $NC"
 fi
@@ -32,9 +35,9 @@ read -p "> " OPT
 if [[ $OPT -eq 1 ]] then
 	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/install-desktop-environment.sh | bash -s -- -a ${username}
 elif [[ $OPT -eq 2 ]] then
-	/home/${username}/reset-configs.sh ${username}
+	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-configs.sh | bash -s -- $username
 elif [[ $OPT -eq 3 ]] then
 	echo 3
 elif [[ $OPT -eq 4 ]] then
-	/home/${username}/reset-bashrc.sh ${username}
+	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-bashrc.sh | bash -s -- $username1
 fi
