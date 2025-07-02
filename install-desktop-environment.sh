@@ -131,7 +131,7 @@ wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/network.sh -P /home/${username}/.config/polybar
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/targetip.sh -P /home/${username}/.config/polybar
 echo "0.0.0.0" > /home/${username}/.config/polybar/target
-echo -e "${GREEN}Setting file permission to 777 $NC"
+echo -e "${RED}!! Setting file permission to 777 !! $NC"
 chmod 777 /home/${username}/.config/polybar/*
 
 
@@ -143,7 +143,7 @@ wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/ma
 # download-target-script-------------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/usr/bin/target -P /usr/bin/
 sudo chmod 777 /usr/bin/target
-echo -e "${YELLOW}Check .config/i3/config if the paths contains your username at the end of the file"
+echo -e "${LGREEN}Check .config/i3/config if the paths contains your username at the end of the file $NC"
 
 # download-background-image----------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
@@ -156,7 +156,7 @@ echo -e "${GREEN}Downloading a better .bashrc $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
 
 # IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
-echo -e "${YELLOW}Dropping the sudo privilege"
+echo -e "${LGREEN}Dropping the sudo privilege $NC"
 sudo -u ${username} bash <<'EOF'
 echo -e "${YELLOW}Running as $(whoami)"
 # Change Shell to Bash ------------------------------------------------------------------
