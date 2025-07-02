@@ -12,7 +12,6 @@ fi
 # Create file if it doesn't exist
 if [ ! -f "$SESSIONFILE" ]; then
     touch "$SESSIONFILE"
-    echo "Created file: $SESSIONFILE"
 fi
 # Source core system
 source /opt/isession/session_management.sh $SESSIONFILE
