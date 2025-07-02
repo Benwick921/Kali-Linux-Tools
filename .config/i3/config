@@ -182,9 +182,9 @@ bindsym $mod+r mode "resize"
 #}
 
 # My Configs
-exec_always --no-startup-id /home/benwick/.config/polybar/launch.sh
+#exec_always --no-startup-id /home/benwick/.config/polybar/launch.sh
 exec --no-startup-id compton
-exec_always feh --bg-scale /home/benwick/Downloads/w.jpg
+#exec_always feh --bg-scale /home/benwick/Downloads/w.jpg
 for_window [class="^.*"] border pixel 1
 gaps inner 12
 gaps outer -3
