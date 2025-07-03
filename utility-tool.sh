@@ -39,5 +39,5 @@ elif [[ $OPT -eq 2 ]] then
 elif [[ $OPT -eq 3 ]] then
 	echo 3
 elif [[ $OPT -eq 4 ]] then
-	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-bashrc.sh | bash -s -- $username1
+	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-bashrc.sh | bash -s -- $username
 fi
