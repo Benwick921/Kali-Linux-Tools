@@ -131,7 +131,11 @@ wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/network.sh -P /home/${username}/.config/polybar
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/polybar/targetip.sh -P /home/${username}/.config/polybar
 echo "0.0.0.0" > /home/${username}/.config/polybar/target
-echo -e "${RED}!! Setting file permission to 777 !! $NC"
+
+echo -e "${RED} !! Setting full permissions (777) to polybar modules bash scripts!! $NC"
+echo -e "${RED} !! Buti this is your PC right? Nothing to worrie about it right? !! $NC"
+echo -e "${RED} !! You are not installing it on critical or company devices right? !! $NC"
+echo -e "${RED} !! ծ_Ô !! $NC"
 chmod 777 /home/${username}/.config/polybar/*
 
 
@@ -160,6 +164,7 @@ echo -e "${LGREEN}Dropping the sudo privilege $NC"
 sudo -u ${username} bash <<'EOF'
 echo -e "${YELLOW}Running as $(whoami)"
 # Change Shell to Bash ------------------------------------------------------------------
+chsh -s /usr/bin/bash
 
 # Install fonts --------------------------------------------------------------------
 echo -e "${YELLOW}Installing NerdFont for icons"
@@ -167,5 +172,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsS
 unzip /tmp/NerdFontsSymbolsOnly.zip -d ~/.local/share/fonts/
 fc-cache -fv
 EOF
+
+echo -e "${YELLOW}Please reboot your system... $NC"
 
 
