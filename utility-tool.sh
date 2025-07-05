@@ -42,5 +42,5 @@ elif [[ $OPT -eq 3 ]] then
 elif [[ $OPT -eq 4 ]] then
 	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-bashrc.sh | bash -s -- $username
 elif [[ $OPT -eq 5 ]] then
-	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/install-autosuggester.sh | bash -s -- $username
+	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/install-autosuggester.sh | bash -s -- $username
 fi
