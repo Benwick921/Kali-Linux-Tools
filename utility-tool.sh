@@ -29,6 +29,7 @@ echo -e "1 - Install desktop environment (default - automatic)"
 echo "2 - Reset/Import all config files (polybar + i3wm + compton)"
 echo "3 - Install session (share variable between terminals)"
 echo "4 - Reset .bashrc"
+echo "5 - ${YELLOW(beta - non stable)}${NC}Install Ghost Suggester like ZSH and FISH"
 echo 
 
 read -p "> " OPT
@@ -40,4 +41,6 @@ elif [[ $OPT -eq 3 ]] then
 	echo 3
 elif [[ $OPT -eq 4 ]] then
 	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-bashrc.sh | bash -s -- $username
+elif [[ $OPT -eq 5 ]] then
+	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/install-autosuggester.sh | bash -s -- $username
 fi
