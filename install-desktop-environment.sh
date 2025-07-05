@@ -60,7 +60,9 @@ if [ $interactive == 1 ]; then
 	read confirm
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	xset b off
+	sudo -u ${username} bash <<'EOF'
+		xset b off
+	EOF
 fi
 
 
@@ -150,14 +152,20 @@ sudo chmod 777 /usr/bin/target
 echo -e "${LGREEN}Check .config/i3/config if the paths contains your username at the end of the file $NC"
 
 # download-background-image----------------------------------------------------------------
-wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
+sudo -u ${username} bash <<'EOF'
+	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
+EOF
 
 # Update .bashrc-----------------------------------------------------------
 echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
-mv /home/${username}/.bashrc /home/${username}/.bashrc_old
+sudo -u ${username} bash <<'EOF'
+	mv /home/${username}/.bashrc /home/${username}/.bashrc_old
+EOF
 
 echo -e "${GREEN}Downloading a better .bashrc $NC"
-wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
+sudo -u ${username} bash <<'EOF'
+	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
+EOF
 
 # IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
 echo -e "${LGREEN}Dropping the sudo privilege $NC"
