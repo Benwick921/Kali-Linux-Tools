@@ -60,9 +60,9 @@ if [ $interactive == 1 ]; then
 	read confirm
 fi
 if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]]; then
-	sudo -u ${username} bash <<'EOF'
-		xset b off
-	EOF
+sudo -u ${username} bash <<'EOF'
+xset b off
+EOF
 fi
 
 
@@ -82,16 +82,19 @@ if [[ $confirm == "y" || $confirm == "yes" || $confirm == "Yes" || $all == 1 ]];
 
 	echo -e "${LGREEN}Creating config folder .config/i3 $NC"
 	mkdir -p /home/${username}/.config/i3
+	chown $username /home/${username}/.config/i3
 
 	echo -e "${LGREEN}Coping i3 config file from github (github.com/benwick921/i3gapstutorial) $NC"
 	
 	echo -e "${LGREEN}Cleaning i3 config folder $NC"
 	rm /home/${username}/.config/i3/*
+	
 	echo -e "${LGREEN}Downloading Kali Linux configuration $NC"
 	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.config/i3/config -P /home/${username}/.config/i3/
 
 	echo -e "${LGREEN}Renaming config file $NC"
 	mv /home/${username}/.config/i3/* /home/${username}/.config/i3/config
+	chown $username /home/${username}/.config/i3/
 fi
 echo -e "${LGREEN}Injecting custom setting for current user"
 echo "exec_always --no-startup-id /home/${username}/.config/polybar/launch.sh" >> /home/${username}/.config/i3/config
@@ -112,6 +115,7 @@ echo -e "${LGREEN}Installing compton for terminal trasparency $NC"
 apt install compton -y
 echo -en "${LGREEN}Copying Compton config file $NC"
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/.config/compton.conf -P /home/${username}/.config/
+chown $username
 
 # dmenu(alt+d start menu dependecy)-----------------------------------------------------
 echo -e "${LGREEN}Installing dmenu for the menu $NC"
@@ -146,6 +150,9 @@ mkdir /opt/isession
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/opt/isession/loader.sh -P /opt/isession/
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/opt/isession/session_management.sh -P /opt/isession/
 
+chown $username:$username /opt/isession/loader.sh
+chown $username:$username /opt/isession/session_management.sh
+
 # download-target-script-------------------------------------------------------------------
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/usr/bin/target -P /usr/bin/
 sudo chmod 777 /usr/bin/target
@@ -154,6 +161,7 @@ echo -e "${LGREEN}Check .config/i3/config if the paths contains your username at
 # download-background-image----------------------------------------------------------------
 sudo -u ${username} bash <<'EOF'
 	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
+	chown $username:$username /home/${username}/Downloads/w.jpg
 EOF
 
 # Update .bashrc-----------------------------------------------------------
@@ -165,6 +173,7 @@ EOF
 echo -e "${GREEN}Downloading a better .bashrc $NC"
 sudo -u ${username} bash <<'EOF'
 	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
+	chown $username:$username home/${username}/.bashrc
 EOF
 
 # IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
