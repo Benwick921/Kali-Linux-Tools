@@ -29,7 +29,7 @@ echo -e "1 - Install desktop environment (default - automatic)"
 echo "2 - Reset/Import all config files (polybar + i3wm + compton)"
 echo "3 - Install session (share variable between terminals)"
 echo "4 - Reset .bashrc"
-echo -e "5 - ${YELLOW}(beta - non stable)${NC} Install Ghost Suggester like ZSH and FISH"
+echo -e "5 - ${YELLOW}(beta - non stable)${NC} Install Ghost Suggester for Gnome Terminal like ZSH and FISH"
 echo 
 
 read -p "> " OPT
