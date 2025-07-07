@@ -160,20 +160,20 @@ echo -e "${LGREEN}Check .config/i3/config if the paths contains your username at
 
 # download-background-image----------------------------------------------------------------
 sudo -u ${username} bash <<'EOF'
-	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
-	chown $username:$username /home/${username}/Downloads/w.jpg
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
+chown $username:$username /home/${username}/Downloads/w.jpg
 EOF
 
 # Update .bashrc-----------------------------------------------------------
 echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
 sudo -u ${username} bash <<'EOF'
-	mv /home/${username}/.bashrc /home/${username}/.bashrc_old
+mv /home/${username}/.bashrc /home/${username}/.bashrc_old
 EOF
 
 echo -e "${GREEN}Downloading a better .bashrc $NC"
 sudo -u ${username} bash <<'EOF'
-	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
-	chown $username:$username home/${username}/.bashrc
+wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
+chown $username:$username home/${username}/.bashrc
 EOF
 
 # IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
