@@ -38,9 +38,9 @@ if [[ $OPT -eq 1 ]] then
 elif [[ $OPT -eq 2 ]] then
 	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-configs.sh | bash -s -- $username
 elif [[ $OPT -eq 3 ]] then
-	echo 3
+	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/install-session-management.sh | bash -s -- $username
 elif [[ $OPT -eq 4 ]] then
 	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/reset-bashrc.sh | bash -s -- $username
 elif [[ $OPT -eq 5 ]] then
-	wget -qO- https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/install-autosuggester.sh | bash -s -- $username
+	wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/utility-modules/install-autosuggester.sh | bash -s -- $username
 fi
