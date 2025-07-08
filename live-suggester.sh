@@ -154,6 +154,6 @@ if [[ $- == *i* ]]; then  # Only run in interactive shells
 			esac
 			bind -x "\"$esc\":\"insert_char '$ch'\"" 2>/dev/null
 		done
-		source $HOME/multi-suggester.sh
+		#source $HOME/multi-suggester.sh
     fi
 fi
