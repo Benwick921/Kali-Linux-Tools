@@ -159,26 +159,26 @@ sudo chmod 777 /usr/bin/target
 echo -e "${LGREEN}Check .config/i3/config if the paths contains your username at the end of the file $NC"
 
 # download-background-image----------------------------------------------------------------
-sudo -u ${username} bash <<'EOF'
+sudo -u "${username}" bash << EOF
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/refs/heads/main/Downloads/w.jpg -P /home/${username}/Downloads/
 chown $username:$username /home/${username}/Downloads/w.jpg
 EOF
 
 # Update .bashrc-----------------------------------------------------------
 echo -e "${GREEN}Renaming .bashrc to .bashrc_old $NC"
-sudo -u ${username} bash <<'EOF'
+sudo -u "${username}" bash << EOF
 mv /home/${username}/.bashrc /home/${username}/.bashrc_old
 EOF
 
 echo -e "${GREEN}Downloading a better .bashrc $NC"
-sudo -u ${username} bash <<'EOF'
+sudo -u "${username}" bash << EOF
 wget https://raw.githubusercontent.com/Benwick921/Kali-Linux-Tools/main/.bashrc -P /home/${username}/
 chown $username:$username home/${username}/.bashrc
 EOF
 
 # IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
 echo -e "${LGREEN}Dropping the sudo privilege $NC"
-sudo -u ${username} bash <<'EOF'
+sudo -u "${username}" bash << EOF
 echo -e "${YELLOW}Running as $(whoami)"
 # Change Shell to Bash ------------------------------------------------------------------
 chsh -s /usr/bin/bash
