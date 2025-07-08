@@ -179,7 +179,7 @@ EOF
 # IMPORTANT: I need to drop the privilege for the running user to be able to set the bash terminal!
 echo -e "${LGREEN}Dropping the sudo privilege $NC"
 sudo -u "${username}" bash << EOF
-echo -e "${YELLOW}Running as $(whoami)"
+echo -e "${YELLOW}Running as $(whoami) $NC"
 # Change Shell to Bash ------------------------------------------------------------------
 chsh -s /usr/bin/bash
 
@@ -189,6 +189,8 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsS
 unzip /tmp/NerdFontsSymbolsOnly.zip -d ~/.local/share/fonts/
 fc-cache -fv
 EOF
+
+echo -e "Please run 'chsh -s /usr/bin/bash'"
 
 echo -e "${YELLOW}Please reboot your system... $NC"
 
